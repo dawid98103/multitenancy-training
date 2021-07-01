@@ -3,16 +3,28 @@ server:
   error:
     include-exception: true
     include-message: always
+##################################################################
+# MULTITENANCY DATABASE SETUP
+##################################################################
+
+multitenancy:
+  master:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/fuelprice
+      username: postgres
+      password: postgres
+      driverClassName: org.postgresql.Driver
+      connectionTimeout: 20000
+      minIdle: 5
+      maxPoolSize: 5
+      idleTimeout: 120000
+      maxLifetime: 300000
+      poolName: masterdb-connection-pool
+      hibernateDialect: org.hibernate.dialect.PostgreSQL9Dialect
+      hibernateShowSql: false
+      hibernateFormatSql: false
+      hibernateDdlAuto: none
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
   h2:
     console:
       enabled: true
